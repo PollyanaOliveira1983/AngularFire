@@ -83,10 +83,10 @@ export class FuncionarioFormComponent implements OnInit {
   }
 
   carregarImagem(event:any){
-    let arquivo = event.target.files[0]
+    let arquivo = event.target.files
     let reader = new FileReader()
 
-    reader.readAsDataURL(arquivo)
+    reader.readAsDataURL(arquivo[0])
     reader.onloadend = () => {
       console.log(reader.result)
       this.funcService.subirImagen("funcionario" + Date.now(), reader.result).then(urlImagem => {

@@ -4,12 +4,12 @@
 
 export const environment = {
   firebase: {
-    projectId: 'siscadfun-b3e2c',
-    appId: '1:730641728496:web:27354e36d9cdbc2e415335',
-    storageBucket: 'siscadfun-b3e2c.appspot.com',
-    apiKey: 'AIzaSyAKDDGpGbxodg4tsFINa7PU7QZixIaZo_0',
-    authDomain: 'siscadfun-b3e2c.firebaseapp.com',
-    messagingSenderId: '730641728496',
+    apiKey: "AIzaSyDmUi05FUL2KIi9Q54A4Rf-NkWpT_N6SVw",
+    authDomain: "siscadfunci.firebaseapp.com",
+    projectId: "siscadfunci",
+    storageBucket: "siscadfunci.appspot.com",
+    messagingSenderId: "537286114885",
+    appId: "1:537286114885:web:523fe1f129f0868580ad2c"
   },
   production: false
 };
