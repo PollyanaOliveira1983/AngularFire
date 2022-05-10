@@ -25,7 +25,14 @@ export class FuncionarioListaComponent implements OnInit {
   listarFuncionarios(){
     this.funcService.listarFuncionarios().subscribe(doc =>{
       console.log(doc)
+      this.funcionarios = []
+      doc.forEach((element: any) => {
+        this.funcionarios.push({
+          id: element.payload.doc.id,
+          ...element.payload.doc.data()})
+      })
     })
+    console.log(this.funcionarios)
   }
 
 }

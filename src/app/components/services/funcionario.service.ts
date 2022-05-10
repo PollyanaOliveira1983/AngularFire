@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat/app';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Funcionario } from '../funcionario/funcionario';
 
 firebase.initializeApp(environment.firebase)
 
@@ -17,6 +18,11 @@ export class FuncionarioService {
 
   listarFuncionarios(): Observable<any>{
     return this.fireAngular.collection('funcionario').snapshotChanges();
-
   }
+
+  addFuncionario(funcionario: Funcionario): Promise<any>{
+    return this.fireAngular.collection('funcionario').add(funcionario)
+  }
+
+  
 }
