@@ -8,7 +8,7 @@ import { HomeComponent } from './components/templates/home/home.component';
 const routes: Routes = [
   {path:"", component:HomeComponent},
   {path:"func-adm", component: FuncionarioAdmComponent},
-  {path:"cards-func", component: FuncionarioCardsComponent}
+  {path:"cards-func", component: FuncionarioListaComponent}
 ];
 
 @NgModule({
