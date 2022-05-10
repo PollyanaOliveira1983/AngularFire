@@ -35,4 +35,15 @@ export class FuncionarioListaComponent implements OnInit {
     console.log(this.funcionarios)
   }
 
+  excluirFuncionario(id: string){
+    this.funcService.excluirFuncionario(id).then(()=>{
+      console.log("Funcionario excluído!")
+    }, error=>{
+      console.log("Erro ai excluir um funcionário" + error)
+    })
+  }
+
+  editarFuncionario(funcionario: Funcionario){
+    this.funcService.pegarDadosDoFuncionarioEscolhido(funcionario)
+  }
 }

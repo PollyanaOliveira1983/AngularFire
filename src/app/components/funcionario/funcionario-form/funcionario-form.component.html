@@ -35,8 +35,8 @@
           </div>
     
           <button mat-raised-button color="primary" type="button" class="btn " >Adicionar Foto</button>
-          <input type="file" id="file-input" #fileInput formControlName="foto" accept="image/*" >
-          <button class="btn mx-2 " (click)="addFuncionario()" color="accent" type="submit" style="margin-top: 10px;" >Salvar</button>
-        </form>
+          <input (change)="carregarImagem($event)" type="file" accept=".png, .svg, .jpg, .jpeg"  formControlName="foto" >
+          <button mat-raised-button class="btn mx-2 " [disabled]="funcionario.invalid" (click)="salvarFuncionario()" color="accent" type="submit" style="margin-top: 10px;" >Salvar</button>
+      </form>
     
-    </div>
+</div>

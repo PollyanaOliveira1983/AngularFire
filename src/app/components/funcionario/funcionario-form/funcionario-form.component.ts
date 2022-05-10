@@ -18,12 +18,36 @@ export class FuncionarioFormComponent implements OnInit {
     foto:['']
   })
 
+  id:string | undefined
+  urlImagem: any = ''
+
   constructor(
     private fb: FormBuilder,
     private funcService: FuncionarioService
   ) { }
 
   ngOnInit(): void {
+    this.funcService.getfuncionarioEdit().subscribe(resultado => {
+      console.log(resultado)
+      this.id = resultado.id
+      this.funcionario.patchValue({
+        nome:resultado.nome,
+        email:resultado.email,
+        cargo:resultado.cargo,
+        salario:resultado.salario,
+        foto:resultado.foto
+      })
+    })
+  }
+
+  salvarFuncionario(){
+    if(this.id == undefined){
+      //executar a funcao de cadastrado
+      this.addFuncionario()
+    }else{
+      //executar a funcao de edicao
+      this.editarFuncionario(this.id)
+    }
   }
 
   addFuncionario(){
@@ -40,5 +64,35 @@ export class FuncionarioFormComponent implements OnInit {
     }, error => {
       console.log("Error ao cadastrar o funcionario")
     }) 
+  }
+  editarFuncionario(id:string){
+    const FUNCIONARIO: Funcionario = {
+      nome: this.funcionario.value.nome,
+      email: this.funcionario.value.email,
+      cargo: this.funcionario.value.cargo,
+      salario: this.funcionario.value.salario,
+      foto: this.funcionario.value.foto
+    }
+    this.funcService.editarFuncionario(id, FUNCIONARIO).then(()=>{
+      console.log("Funcionario editado!")
+      this.funcionario.reset()
+      this.id = undefined
+    }, error=>{
+      console.log("Erro ao editar um funcionario: " + error)
+    })
+  }
+
+  carregarImagem(event:any){
+    let arquivo = event.target.files[0]
+    let reader = new FileReader()
+
+    reader.readAsDataURL(arquivo)
+    reader.onloadend = () => {
+      console.log(reader.result)
+      this.funcService.subirImagen("funcionario" + Date.now(), reader.result).then(urlImagem => {
+        console.log(urlImagem)
+        this.urlImagem = urlImagem
+      })
+    }
   }
 }
